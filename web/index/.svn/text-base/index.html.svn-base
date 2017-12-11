@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=yes">
+<link rel= "stylesheet" href="../../css/myiconfont.css"/>
+<link rel="stylesheet" href="../../css/index.css" />
+<link rel="stylesheet" href="../../css/kiner-swiper-panel.css">
+<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+<title>首页</title>
+</head>
+<body>
+<div id="top_wrap" class="top_wrap">
+	<a class="site" href="#" id="site">
+		<span id="vv">请选择
+		</span>
+		<input type="hidden" value="" id="vvcode"/>
+		<span class="iconfont icon-jiantou2"></span>
+	</a>
+	<div id="area_block">
+		
+	</div>
+	<a class="search" id="searchBtn">
+		<span class="iconfont icon-sousuo gray"></span>
+		<span class="s_default">请输入查询内容</span>
+	</a>
+	<div class="news whiteText"  id="news" >
+	</div>
+</div>
+<div class="main_wrap">
+	<div class="qd">
+		<div class="mark"></div>
+		<div id="qd_box">
+			<div class="num_item" id="num_item"><strong class="red" style="font-size: 1.2rem;">+</strong>
+				<strong id="score_num" class="red" style="display: inline-block;">
+					<img src="../../images/loading.gif" width="15" style="vertical-align: -3px"/>
+				</strong>
+				<small>积分</small>
+				<p>恭喜已连续签到
+					<strong class="orange dayNum" style="display: inline-block;">
+					<img src="../../images/loading.gif" width="15" style="vertical-align: -3px"/>
+					</strong>天<br/>
+					一定要坚持哦！
+				</p>
+			</div>
+			<a href="timeaixs.html" class="qd_list">我的签到记录</a>
+		</div>
+	</div>
+	<div id="banner_wrap" class="banner_wrap" >
+		<!--<img src="../../images/reload.gif">-->
+	</div>
+	<div class="first_wrap">
+		<div class="item1">
+			<a href="#" class="weather">
+			</a>
+			<section class="gasPrice_con notice list_lh" id="notice1" style="margin-top: 4px;">
+				<ul class="gas_price noticTipTxt">
+					<li>
+						<a href="#">
+							今日油价
+							<span class="text1">0#</span>&nbsp;<span class="text2 ">¥
+							<i class="oil1"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							今日油价<span class="text1">89</span>&nbsp;<span class="text2 ">¥<i class="oil2"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							今日油价<span class="text1">90#</span>&nbsp;<span class="text2 ">¥<i class="oil3"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							今日油价<span class="text1">92#</span>&nbsp;<span class="text2 ">¥<i class="oil4"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							今日油价<span class="text1">93#</span>&nbsp;<span class="text2 ">¥<i class="oil5"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							今日油价<span class="text1">95#</span>&nbsp;<span class="text2 ">¥<i class="oil6"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="#" >
+							今日油价<span class="text1">97#</span>&nbsp;<span class="text2 ">¥<i class="oil7"></i></span>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<a href="#" class="bdi">
+				<p class="t1">出行
+					<span class="red bdiItem1"></span>
+				</p>
+				<p class="t2">洗车
+					<span class="red bdiItem2"></span>
+				</p>
+			</a>
+		</div>
+		<div class="item2">
+			<div class="top_header">
+				<a href="../topNews/topNews_list.jsp"><img src="../../images/index/top@3x.png" width="75%" /></a>
+			</div>
+			<div class="news_text notice">
+				<ul  id="notice2" class="news_li">
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="second_wrap">
+		<header>VIP免费专属特权</header>
+		<section>
+			<a href="#" class="V_item V_item1" data-value="8">免费洗车</a>
+			<a href="#" class="V_item V_item2" data-value="9">免费洗浴</a>
+			<a href="#" class="V_item V_item3" data-value="10">免费健身</a>
+			<a href="#" class="V_item V_item5" data-value="12">道路救援</a>
+			<a href="carAgent.html" class="V_item V_item4" data-value="">车务代理</a>
+		</section>
+	</div>
+	<div class="third_wrap">
+		<header>会员尊享服务</header>
+		<section class="first_section">
+			<a href="#" class="third_item1"></a>
+			<a href="#" class="Ing_item third_item2"></a>
+			<a href="#" class="Ing_item third_item3"></a>			
+		</section>
+		<section>
+			<a href="#" class="Ing_item third_item4"></a>	
+			<a href="#" class="Ing_item third_item5"></a>
+			<a href="../person_msg/experVIP.jsp" class="third_item6"></a>
+		</section>
+	</div>
+	<div class="four_wrap">
+		<header>我们用心您省心<i>时刻为您准备着</i></header>
+		<section class="container">
+		    <ul class="kinerNav">
+		        <li class="active">爱车服务</li>
+		        <li>车主生活</li>
+		    </ul>
+		    <div class="box">
+		        <div class="kinerContent">
+		            <div class="wrapper">
+		                <div class="kinerItem">
+		                    <section class="s3">
+		                		<a href="#" class="S_item s3_item1" data-value="1"><span>美容美护</span></a>
+		                		<a href="#" class="Ing_item s3_item7"><span>维修保养</span></a>
+		                		<a href="#" class="Ing_item s3_item6"><span>汽车金融</span></a>
+		                		<a href="#" class="Ing_item s3_item8"><span>汽车保险</span></a>
+		                	</section>
+		                	<section class="s3">
+		                		<a href="#" class="Ing_item s3_item4"><span>新/二手车</span></a>
+		                		<a href="#" class="Ing_item s3_item3"><span>车品配饰</span></a>
+		                		<a href="#" class="Ing_item s3_item2"><span>汽车改装</span></a>
+		                		<a href="#" class="Ing_item s3_item5"><span>实用工具</span></a>
+		                	</section>
+		                </div>
+		                <div class="kinerItem">
+		                	<section class="s4">
+		                		<a href="#" class="Ing_item s4_item1"><span>美食快餐</span></a>
+		                		<a href="#" class="Ing_item s4_item2"><span>酒店客栈</span></a>
+		                		<a href="#" class="Ing_item s4_item3"><span>休闲娱乐</span></a>
+		                		<a href="#" class="Ing_item s4_item4"><span>运动保健</span></a>
+		                	</section>
+		                	<section class="s4">
+		                		<a href="#" class="Ing_item s4_item5"><span>品质生活</span></a>
+		                		<a href="#" class="Ing_item s4_item6"><span>旅游景点</span></a>
+		                		<a href="#" class="Ing_item s4_item7"><span>保险超市</span></a>
+		                		<a href="#" class="Ing_item s4_item8"><span>生活百科</span></a>
+		                	</section>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</section>
+	</div>
+	<div class="five_wrap">
+		<header><img src="../../images/index/activty@3x.png"/></header>
+		<div id="activtyList">
+		</div>
+		<p class="more_activty"><a href="../activity/activty_list.jsp">更多活动</a></p>
+	</div>
+	<div class="six_wrap">
+		<header>推荐专区</header>
+		<ul class="hotShop" id="hotShop">
+			加载中
+ 		</ul>
+	 <div class="more" >查看更多</div>
+	</div>
+</div>
+<footer id="commonfoot">
+	<a href="#" class="home">首页</a>
+	<a class="shop" id="shop">商家</a>
+	<a href="../exmall/jifen_shop_list.jsp" class="point_mall">积分商城</a>
+	<a href="../community/community_list.jsp" class="community">社区</a>
+	<a href="../person_msg/personCenter.html" class="my">我的</a>
+</footer>
+<div class="oilwrap">
+	<div class="oilcon">
+		<header>
+			<img src="../../images/index/oil_icon.png"/>
+			<strong class="orange">今日油价</strong>
+		</header>
+		<div class="oilItem">
+			<div class="loading">
+				<img src="../../images/loading.gif" />
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="../../js/jquery-1.7.2.min.js" ></script>
+<script src="http://webapi.amap.com/maps?v=1.3&key=b3f2445ad18c5eb2302de6c96e885381&plugin=AMap.CitySearch,AMap.Geolocation"></script>
+ <!--<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=b3f2445ad18c5eb2302de6c96e885381"></script>-->
+<script src="http://webapi.amap.com/ui/1.0/main.js"></script>
+<script src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/index.js"></script>
+<script src="../../js/zepto_min.js"></script>
+<script type="text/javascript" src="../../js/touchslider.js" ></script>
+<script src="../../js/kiner-swiper-panel.min.js"></script>
+<script>
+$(function(){
+	var oilL=(windowW-$('.oilcon').width())/2;
+	$('.oilwrap').css({
+		"height":windowH
+	})
+	$('.noticTipTxt').click(function(){
+		$('.oilwrap').show();
+	})
+	$('.oilwrap').click(function(){
+		$('.oilwrap').hide();
+	})
+	$.ajax({
+		type:"get",
+		url:apiUrl+"/appcms/getcontents",
+		data:{
+			"region":storage['region'],
+			"columnCode":"H01M02",
+			"isGetImage":1,
+			"pageNum":1,
+			"pageSize":0
+			
+		},
+		dataType:"json",
+		success:function(data){
+			var html='';
+			if(data.return_code=="SUCCESS"){
+				html+='<div class="hdp-box">'+
+						'<div id="slider" class="swipe">'+
+							'<ul class="piclist">';
+							$.each(data.pageInfo.list, function(index,item) {
+									html+='<li><a href="'+item.url+'"><img src="'+item.imageList[0].url+'"></a></li>';
+								});
+					html+='</ul>'+
+						'</div>'+
+						'<div class="count">'+
+							'<b class="bi">1</b>/<b class="bcount"></b>'+
+						'</div>'+
+					'</div>'
+				$('#banner_wrap').html(html)
+				var num=$('#slider').find('li').size();
+					$('.bcount').text(num);	
+					$('.b_btn').click(function(){
+					$(this).toggleClass('b_btn_active');
+					$('.intro').toggle();
+				})
+				var tt=new TouchSlider({
+					'id':'slider',
+					'auto':'0',
+					'fx':'ease-out',
+					'direction':'left',
+					'speed':600,
+					'timeout':5000,
+					'before':function(index){
+						var es=document.getElementById('slider').getElementsByTagName('li');
+						var it=$(es[index]).index()+1;	
+						$('.bi').text(it);	
+						var tx=$(es[index]).find('p').text();	
+						$('.title').text(tx);
+					}
+				});
+			}
+		}
+	});
+})
+
+
+$('.Ing_item').click(function(){
+	$('.toast1').text("业务正在规划中，敬请期待...").css("left","30%").fadeIn()
+	setTimeout(function(){
+		$('.toast1').fadeOut()
+	},2000)
+})
+</script>
+</html>

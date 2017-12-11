@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="../../css/mui.min.css">
+<link rel="stylesheet" href="../../css/app.css">
+<link rel="stylesheet" href="../../css/myiconfont.css">
+<title>商家详情</title>
+</head>
+<body>
+	<header id="header" class="mui-bar mui-bar-transparent show hide">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">服务详情</h1>
+		<!--<a class="mui-pull-right collBtn"><span class="iconfont icon-shoucang"></span><i>收藏</i></a>-->
+	</header>
+	<div class="bottom_item show hide">
+		<section>
+			<span>合计：<strong id="priceTotal" class="red">0:00</strong></span>
+			<span>已选<i id="seviceNum" class="red">0</i>项服务</span>
+		</section>
+		<a  id="itemList">我选好了</a>
+	</div>
+	<div id="wrap" class="mui-content" style="padding-top: 45px; padding-bottom: 50px;" >
+		<div class="loading">
+			<img src="../../images/shop_detail/reload.gif" />
+		</div>
+	</div>
+	<div class="telcon">
+		<div class="tel">
+			<p class="orange"><img src="../../images/loading.gif"/></p>
+			<span class="confirmbtn">确定</span>
+		</div>
+	</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/jquery-1.7.2.min.js" ></script>
+<script src="../../js/common.js" ></script>
+<script src="../../js/seviceDetail.js" ></script>
+<script>
+	mui.init();
+</script>
+</html>

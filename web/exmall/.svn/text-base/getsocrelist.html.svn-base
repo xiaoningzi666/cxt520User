@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="../../css/mui.min.css" rel="stylesheet" />
+<link href="../../css/app.css" rel="stylesheet" />
+<title>积分商城</title>
+</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">积分商城</h1>
+		</header>
+		<div class="mui-content jf_wrap">
+			<div class="jf_header">
+				<a id="btn1">积分余额<span class="orange score"></span></a>
+				<a id="btn2">累计积分<span class="orange score"></span></a>
+				<a id="btn3">兑换积分<span class="orange score"></span></a>
+			</div>
+			<section class="mui-row jf_list_wrap " id="js_list1">
+				<div class="loading">
+					<img src="../../images/shop_detail/reload.gif" />
+				</div>
+			</section>
+			
+			<section class="mui-row jf_list_wrap " id="js_list2">
+				
+			</section>
+	</div>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery-1.7.2.min.js" ></script>
+	<script src="../../js/common.js"></script>
+</body>
+</html>

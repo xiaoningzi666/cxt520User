@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/app.css" />
+		<link rel="stylesheet" href="../../css/myiconfont.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">我的评价</h1>
+		</header>
+		<div class="mui-content main_wrap">
+			<div class="apprise_list">
+				<header>
+			    	<p class="h">
+			    		<img src="../../images/my_msg/520_logo.png"/>
+			    		<span>小萌神<i class="m_rank">会员等级</i></span>
+			    		<span class="mui-pull-right apprise_time" id="">2017-08-09</span>
+			    	</p>
+			    	<ul class="start">
+			    		<li class=""><span class="iconfont icon-xing1 red"></span></li>
+			    		<li class=""><span class="iconfont icon-xing1 red"></span></li>
+			    		<li class=""><span class="iconfont icon-xing1 red"></span></li>
+			    		<li class=""><span class="iconfont icon-xing1 gray"></span></li>
+			    		<li class=""><span class="iconfont icon-xing1 gray"></span></li>
+			    	</ul>
+			    </header>
+			    <article>
+			    	<span class="orange">汽车服务X2</span>
+			    	<span class="blue">车内清洁</span>
+			    	<span class="green">洗车打蜡</span>
+			    </article>
+			    <section>
+			    	<strong>
+			    	经常在这里洗车。服务态度好，洗的也干净，下次还会再来的
+			    	</strong>
+			    	<div class="mui-row apprise_shop">
+			    	    <div class="mui-col-xs-3">
+			    	    	<img src="../../fonts/images/shuijiao.jpg"  width="100%"/>
+			    	    </div>
+			    	    <div class="mui-col-xs-9 s_h">
+			    	    	<h4 class="mui-ellipsis">开封车行</h4>
+			    	    	<p class="mui-ellipsis">小宋城北200米</p>
+			    	    </div>
+			    	</div>
+			    </section>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery-1.7.2.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			$.ajax({
+				type:"get",
+				url:apiUrl+"/orders/getmemberevaluatelist",
+				data:{
+					"userId":storage['getUserId'],
+					"sign":storage['getSign'],
+					"pageSize":10,
+					"pageNum":1
+				},
+				dataType:"json",
+				success:function(data){
+					var html='';
+					if(data.return_code=="SUCCESS"){
+						$.each(data.pageInfo.list, function(index,item) {
+							html+='<div class="apprise_list">'+
+								'<header>'+
+							    	'<p class="h">'+
+							    		'<img src="'+item.logoUrl+'"/>'+
+							    		'<span>'+item.nickName+'<i class="m_rank"><img src="../images/VIP_experience/v'+item.level+'.png"</i></span>'+
+							    		'<span class="mui-pull-right apprise_time" id="">'+timeFormat(item.created)+'</span>'+
+							    	'</p>'+
+							    	'<ul class="start">'+
+							    		'<li class=""><span class="iconfont icon-xing1 red"></span></li>'+
+							    	'</ul>'+
+							    '</header>'+
+							    '<article>';
+//							    $.each(item., function() {
+//							    	
+//							    });
+							    	'<span class="orange">汽车服务X2</span>'+
+							   '</article>'+
+							'</div>'
+						});
+						$('.main_wrap').html(html)
+					}else{
+						$('.main_wrap').height($(window).height());
+						$('.main_wrap').css({"background":"url(../../images/blank.png)","background-size":"cover"})
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

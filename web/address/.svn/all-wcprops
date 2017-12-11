@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/cxt/!svn/ver/1208/web/trunk/520-app/web/address
+END
+shop_address_add.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/cxt/!svn/ver/1338/web/trunk/520-app/web/address/shop_address_add.jsp
+END
+shop_address_manage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/cxt/!svn/ver/1338/web/trunk/520-app/web/address/shop_address_manage.jsp
+END
+shop_address_list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cxt/!svn/ver/1338/web/trunk/520-app/web/address/shop_address_list.jsp
+END
+shop_address_edit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cxt/!svn/ver/1208/web/trunk/520-app/web/address/shop_address_edit.jsp
+END

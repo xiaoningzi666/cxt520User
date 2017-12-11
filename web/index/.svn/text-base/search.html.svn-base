@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/app.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="../../css/myiconfont.css" />
+	</head>
+
+	<body class=" white">
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">
+		    	<form class="search_wrap" id="search">
+		    		<span class="iconfont icon-sousuo"></span>
+		    		<input type="text" id="" class="search_btn" placeholder="请输入查询内容"/>
+		    	</form>
+		    </h1>
+		    <i class="mui-pull-right editBtn" id="searchBtn">搜索</i>
+		</header>
+		<div class="mui-content search_item">
+		    <section id="oldorder">
+		    	<h4>历史搜索</h4>
+	    		<div class="delete history"></div>
+	    		<button class="del_historyOrder history" id="his-dele"><span class="iconfont icon-shanchu"></span>&nbsp;清空历史记录</button>
+		    </section>
+		   
+		</div>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery-1.7.2.min.js" ></script>
+	<script src="../../js/common.js"></script>
+	<script type="text/javascript">
+		mui.init();
+		var hisTime;//获取搜索时间数组
+		var hisItem;//获取搜索内容数组
+		var lastKey;//获取最近的1个搜索时间
+		storage["searchKeywords"]=$(".search_btn").val();
+		function init (){
+		 	hisTime = [];//时间数组置空
+		 	hisItem = [];//内容数组置空
+		 	for(var i = 0; i < localStorage.length; i++){//数据去重
+			 	if(!isNaN(localStorage.key(i))){//判断数据是否合法
+				 	hisTime.push(localStorage.key(i));
+				 	lastKey=i
+			 	}
+		 	}
+		 	if(hisTime.length > 0) {
+			 	hisTime.sort();//排序
+			 	for (var y = 0; y < hisTime.length; y++) {
+			 		localStorage.getItem(hisTime[y]).trim() && hisItem.push(localStorage.getItem(hisTime[y]));
+			 	}
+		 	}
+		 	$(".delete").html("");//执行init(),每次清空之前添加的节点
+		 	$(".Storage").show();
+		 	for(var i = 0; i < hisItem.length; i++){
+			 	$(".delete").prepend('<div class="word-break">'+hisItem[i]+'</div>');
+			 	if(hisItem[i] != ''){
+			 		$(".Storage").hide();
+			 	}
+		 	}
+		 	 
+		 }
+		 
+		init();//调用
+		
+		$("#searchBtn").click(function(){
+		 	var value = $(".search_btn").val();
+		 	var time = (new Date()).getTime();
+		 	if(!value){
+		 	mui.toast("搜索内容不能为空")
+		 	return false;
+		 	}
+		 	//输入的内容localStorage有记录
+		 	if($.inArray(value,hisItem) >= 0){
+			 	for(var j = 0; j < localStorage.length; j++){
+				 	if(value == localStorage.getItem(localStorage.key(j))){
+				 		localStorage.removeItem(localStorage.key(j));
+				 	}
+			 	}
+			 	localStorage.setItem(time,value);
+		 	 
+		 	}else{
+		 		localStorage.setItem(time,value);
+		 	}
+		 	init();
+		 	window.location.assign('../shop/seacher_shopList.jsp?region='+$.getUrlParam('region')+'&key='+localStorage.key(lastKey))
+		 	 
+		});
+		 
+		//清除记录功能
+		$("#his-dele").click(function(){
+		 	var f = 0;
+		 	for(;f<hisTime.length;f++){
+		 		localStorage.removeItem(hisTime[f]);
+		 	}
+		 	init();
+		});
+		//苹果手机不兼容出现input无法取值以下是解决方法
+		$( ".delete" ).on( "click", ".word-break", function() {
+		 	var div = $(this).text();
+		 	$('.search_btn').val(div);
+		});
+	</script>
+</body>
+</html>

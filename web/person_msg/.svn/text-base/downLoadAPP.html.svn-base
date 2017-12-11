@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>下载App</title>
+<link href="../../css/mui.min.css" rel="stylesheet" />
+<link href="../../css/app.css" rel="stylesheet"/>
+</head>
+<body>
+	<div class="dWrap">
+		<div class="dhead">
+			<div class="dhead_item">
+				<strong>下载手机客户端</strong>
+				<span class="mui-pull-right">关闭</span>
+			</div>
+			<div class="daside">
+				<div class="dasideItem">
+					<img src="../../images/60x60.gif">
+					<p>扫描二维码<br/>
+						关注微信公众号
+					</p>
+				</div>
+				<div class="dasideItem dasideItem2">
+					<img src="../../images/downLoad/Android.png" />
+					<img src="../../images/downLoad/iOS.png" />
+				</div>
+			</div>
+		</div>
+		<div class="dsection">
+			<div class="dsectionHead">
+				<img src="../../images/downLoad/downLoadHead.png" />
+			</div>
+			<section class="dsectionItem1">
+				<img src="../../images/downLoad/downLoadTitle1.png" />
+				<p>520VIP会员可尊享全年免费洗车、免费洗浴、免费游泳和免费道路救援等服务，致力于为车主提供更加快捷和实惠的服务。</p>
+			</section>
+			<section class="dsectionItem2">
+				<img src="../../images/downLoad/downLoadTitle2.png" />
+				<p>积分在手好礼相赠！！！您加入520、推荐520、使用520、签到、分享520即可赚取积分，积分商城更有VIP月卡及海量礼品等你兑换~轻松方便，无需花钱，还为您送到家~</p>
+			</section>
+			<section class="dsectionItem3">
+				<img src="../../images/downLoad/downLoadTitle3.png" />
+				<p>520VIP会员可尊享全年免费洗车、免费洗浴、免费游泳和免费道路救援等服务，致力于为车主提供更加快捷和实惠的服务。</p>
+			</section>
+			
+		</div>
+		
+		
+	</div>
+</body>
+</html>

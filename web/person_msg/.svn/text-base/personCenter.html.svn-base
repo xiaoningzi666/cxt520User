@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<link rel="stylesheet" href="../../css/mui.min.css">
+<link rel="stylesheet" href="../../css/myiconfont.css" />
+<link rel="stylesheet" href="../../css/app.css" />
+<title>个人中心</title>
+</head>
+<body>
+	<footer>
+		<a href="../index/index.html" class="home">首页</a>
+		<a href="../shop/shop_list.jsp" id="shop" class="shop">商家</a>
+		<a href="../exmall/jifen_shop_list.jsp" class="point_mall">积分商城</a>
+		<a href="../community/community_list.jsp" class="community">社区</a>
+		<a  class="myon">我的</a>
+	</footer>
+	<div  class="mui-content" style="padding-top: 0;padding-bottom: 50px;">
+		<div class="head_wrap" id="head_wrap">
+			<div style="color: #fff;padding: 0.8rem 0.8rem 0;">
+				<a href="setup.jsp" style="color: #fff;">
+					<span class="mui-icon mui-icon-gear"></span>
+				</a>
+				<span class="news whiteText mui-pull-right" id="news" ></span>
+			</div>
+		</div>
+		<ul class="mui-table-view mui-table-view-chevron">
+			<li class="mui-table-view-cell click">
+				<a class="mui-navigate-right d" data-id="-1000">
+					<span style="font-size: 1.2rem;">全部订单</span> <i class="mui-pull-right Mupdate"></i>
+				</a>
+			</li>
+			<div class="order_con click">
+				<a  id="d1" class="d" data-id="0">待付款</a>
+				<a  id="d2" class="d" data-id="2">待消费</a>
+				<a  id="d3" class="d" data-id="3">待评价</a>
+				<a  id="d4" class="d" data-id="4">已完成</a>
+			</div>
+		</ul>
+				
+		<ul class="mui-table-view mui-table-view-chevron " style="margin-top:5px;">
+			<li class="mui-table-view-cell cell2 click">
+				<a class="mui-navigate-right msg_item invite">
+					<img src="../../images/my_msg/img1.png" />邀请有礼
+				</a>
+			</li>
+			<li class="mui-table-view-cell cell2 click">
+				<a href="../exmall/jfexchange_record.jsp" class="mui-navigate-right msg_item">
+					<img src="../../images/my_msg/img2.png" />兑换记录
+				<!--<i class="mui-pull-right Mupdate">20条记录</i>-->
+				</a>
+			</li>
+			<li class="mui-table-view-cell cell2 click">
+				<a href="VIPPayRecorde.jsp" class="mui-navigate-right msg_item">
+					<img src="../../images/my_msg/img10.png" />缴费记录
+				<!--<i class="mui-pull-right Mupdate">4条记录</i>-->
+				</a>
+			</li>
+			<li class="mui-table-view-cell cell2 click">
+				<a href="myapprise_list.html" class="mui-navigate-right msg_item">
+					<img src="../../images/my_msg/img3.png" />我的评价 
+				</a>
+			</li>
+			<li class="mui-table-view-cell cell2 click" id="c">
+				<a href="mycollection_list.html" class="mui-navigate-right msg_item">
+					<img src="../../images/my_msg/img4.png" />我的收藏
+				<!--<i class="mui-pull-right Mupdate">45</i>-->
+				</a>
+			</li>
+			<li class="mui-table-view-cell cell2 click" >
+				<a href="../address/shop_address_manage.jsp" class="mui-navigate-right msg_item">
+					<img src="../../images/my_msg/img5.png" />收货地址
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view mui-table-view-chevron" style="margin-top:5px;">
+			<li class="mui-table-view-cell">
+				<a href="520notice.html" class="mui-navigate-right msg_item">
+					<img src="../../images/my_msg/img12.png" />520须知
+				</a>
+			</li>
+			<li class="mui-table-view-cell cell2">
+				<a class="mui-navigate-right msg_item" id="csc">
+					<img src="../../images/my_msg/img7.png" />客服中心 </a>
+			</li>
+			<li class="mui-table-view-cell cell2 " id="about">
+				<a class="mui-navigate-right msg_item" >
+					<img src="../../images/my_msg/img8.png" />关于520
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view mui-table-view-chevron" style="margin-top:5px;">
+			<li class="mui-table-view-cell cell2 invite click ">
+				<a class="msg_item ">
+					<img src="../../images/my_msg/img9.png" />我的推荐码
+					<i class="mui-pull-right MupdateLast" id="phone"></i>
+				</a>
+			</li>
+			<li class="mui-table-view-cell cell2 click">
+				<a href="520_mycollection_list.html" class="msg_item">
+					<img src="../../images/my_msg/img13.png" />客户经理
+					<i class="mui-pull-right MupdateLast1" >无</i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</body>
+<script src="../../js/jquery-1.7.2.min.js" ></script>
+<script src="../../js/common.js" ></script>
+<script src="../../js/personCenter.js"></script>
+<script>
+	
+	$('.invite').click(function(){
+		window.location.assign("invite.html?m="+storage['getPhone'])
+	})
+	$('#about').click(function(){
+		window.location.assign("common.html?para=M01M17")
+	})
+	$('#csc').click(function(){
+		window.location.assign("common.html?para=M01M16")
+	})
+	if(storage['getUserId']){
+	$.ajax({
+		type:"get",
+		url:apiUrl+"/common/message/getnotices",
+		data:{
+			"userId":storage['getUserId'],
+			"sign":storage['getSign'],
+			"status":0
+		},
+		dataType:"json",
+		success:function(data){
+			if(data.return_code=="SUCCESS"){
+				MsgNum=data.pageInfo.total
+				//alert(data.pageInfo.total)
+				if(MsgNum==0){
+					$('#news').html(
+						'<a href="../index/msg_list.jsp">'+
+							'<span class="iconfont icon-xiaoxi1 whiteText"></span>'+
+						'</a>')
+				}else{
+					$('#news').html(
+					'<a href="../index/msg_list.jsp">'+
+						'<span class="iconfont icon-xiaoxi1">'+
+					'<i class="bage">'+MsgNum+'</i></span></a>')
+				}
+			}
+		}
+	});
+}else{
+	$('#news').html('<a href="../login-sign/login.jsp" style="color:#fff">登录</a>')
+}
+</script>
+</html>

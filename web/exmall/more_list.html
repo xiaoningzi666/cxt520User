@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="../../css/mui.min.css" rel="stylesheet" />
+<link href="../../css/app.css" rel="stylesheet" />
+<link href="../../css/myiconfont.css" rel="stylesheet"/>
+<title>积分商城</title>
+<style>
+	.jf_list:nth-child(odd) {
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+}</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">积分商城</h1>
+	</header>
+	<div class="mui-content jf_wrap">
+		<div class="jf_header">
+			<span>
+				<i class="blue" id="allBtn">全部</i>
+				<i class="iconfont icon-jiantou2"></i></span>
+			<span class="sort">积分</span>
+		</div>
+		<section class="mui-row jf_list_wrap " id="js_list1">
+			<div class="loading">
+				<img src="../../images/shop_detail/reload.gif" />
+			</div>
+		</section>
+	</div>
+	<div class="category">
+		
+	</div>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/jquery-1.7.2.min.js" ></script>
+<script src="../../js/common.js"></script>
+<script>
+var n=1;	
+$('.category').css("height",'100%')
+$.ajax({
+	type:"get",
+	url:apiUrl+"/mall/getcategories",
+	async:true,
+	data:{},
+	dataType:"json",
+	success:function(data){
+		if(data.return_code=="SUCCESS"){
+			var html='';
+			html+='<ul class="categoryList"><li class="categoryOn">'+
+			'<input　type="hidden" value=""/>'+
+			'全部</li>';
+			$.each(data.categoryList, function(i,j) {
+				html+='<li><input type="hidden" value="'+j.id+'"/>'+j.title+'</li>';
+			});
+			html+='</ul>';
+			$('.category').html(html)
+			$('.categoryList li').click(function(){
+				var id=$(this).find('input').val();
+				$(this).siblings().removeClass("categoryOn");
+				$(this).addClass("categoryOn");
+				$('.category').hide()
+				$('#allBtn').text($(this).text())
+				$('#js_list1').html(getgoodses($.getUrlParam("type"),id,'',''));
+			})
+		}
+	}
+});	
+$('.sort').click(function(){
+	n++;
+	if(n%2==0){
+		$(this).css("background-position","65% 130%")
+		$('#js_list1').html(getgoodses($.getUrlParam("type"),'',"ASC","SCORE"))
+	}else{
+		$(this).css("background-position","65% 51%")
+		$('#js_list1').html(getgoodses($.getUrlParam("type"),'',"DESC","SCORE"))
+	}
+	
+})
+
+$("#allBtn").toggle(
+	function(){
+		$('.category').show()
+		$('.category ul').animate({height:"300px"});
+	},
+	function(){
+		$('.category').hide()
+		$('.category ul').animate({height:"0"});
+	}
+);
+
+if($.getUrlParam("type")){
+$('vipH').hide();
+$('newH').hide();
+$('#js_list1').addClass("white")
+$('#js_list1').html(getgoodses($.getUrlParam("type"),'','',''));
+}
+function getgoodses(type,id,ordertype,orderby){
+	var html='';
+	$.ajax({
+		type:"get",
+		url:apiUrl+"/mall/getgoodses",
+		async:false,
+		data:{
+			"region":storage['region'],
+			"limitArea":type,
+			"categoryId":id,
+			"orderType":ordertype,
+			"orderBy":orderby,
+			"pageSize":6,
+			"pageNum":1
+		},
+		dataType:"json",
+		success:function(data){
+			if(data.return_code=="SUCCESS"){
+				$('#js_list'+type).addClass("white")
+				$.each(data.pageInfo.list, function(index,item) {
+				html+='<div class="mui-col-xs-6 jf_list">'+
+						'<input type="hidden"/>'+
+						'<a href="jfshop_ProDetaill.jsp?id='+item.id + '&region=410100">';
+						if(item.limitArea==2){
+							html+='<img src="../../images/jifen_shop/VIP_icon5.png" class="mark"/>';
+						}
+						html+='<p class="jf_item mui-pull-left">'+
+						    	'<i class="mui-ellipsis">'+item.title+'</i>'+
+						    	'<span>'+item.exchangePrice+'</span>'+
+						    '</p>';
+						    if(item.imageUrl){
+						    	html+='<img src="'+ item.imageUrl+'" class="mui-pull-right">';
+						    }else{
+						    	html+='<img src="../../images/girl2.png" class="mui-pull-right">';
+						    }
+					html+='</a>'+
+					  ' </div>'
+				});
+				if(data.pageInfo.total==0){
+					html='<img src="../../images/blank.png" />'
+					}
+				}else{
+					mui.toast(data.reurn_msg)
+				}
+			}
+		});
+	return html;
+}
+	
+</script>
+</body>
+</html>

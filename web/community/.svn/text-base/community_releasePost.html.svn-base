@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+<link rel="stylesheet" href="../../css/app.css" />
+<title>发布帖子</title>
+<style>
+/*.loading{
+    border: 1px solid #D1D1D1;
+	background:url(../../images/uploadImg/loading.gif) no-repeat top;
+}*/
+/*遮罩层样式*/
+.mask{
+	z-index: 1000;
+	display: none;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.4);
+}
+.check-p .del-com{
+	border-right: 1px solid #D1D1D1;
+}
+
+</style>
+</head>
+<body class="white">
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<button id="release" class="mui-btn mui-btn-blue  mui-pull-right" style="padding: 5px 10px;font-size: 0.8rem;">发送</button>
+	</header>
+	<div class="mui-content release_con">
+		<form id="myform" name="myform" method="post"   action="" enctype="multipart/form-data">
+			<input type="hidden" name="userId" value="" id="userId"/>
+			<input type="hidden" name="sign" value="" id="sign"/>
+			<input type="hidden" name="region" value="" id="region"/>
+			<input type="hidden" name="type" value="1"/>
+			<div class="mui-input-row">
+			<input id='releaseHeader' type="text" name="title" class="mui-input-clear" placeholder="请输入您的标题"/>
+		</div>
+		<div class="mui-input-row">
+			<textarea id="releaseText" name="content" class="mui-input-clear question" placeholder="请在这里编辑发布内容"></textarea>
+		</div>
+		<div class="uploadImg">
+			<div class="img-box full">
+			<section class=" img-section">
+				<div class="z_photo upimg-div clear" >
+	               <!--<section class="up-section fl">
+	               		<span class="up-span"></span>
+	               		<img src="/img/buyerCenter/a7.png" class="close-upimg">
+	               		<img src="/img/buyerCenter/3c.png" class="type-upimg" alt="添加标签">
+	               		<img src="/img/test2.jpg" class="up-img">
+	               	    <p class="img-namep"></p>
+	               	    <input id="taglocation" name="taglocation" value="" type="hidden">
+	               	    <input id="tags" name="tags" value="" type="hidden">
+	               	</section>-->
+	               	 <section class="z_file fl">
+	               	 	<img src="../../images/uploadImg/a11.png" class="add-img">
+	               	 	<input type="file" name="" id="file" class="file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp"  />
+	               	 </section>
+		         </div>
+			 </section>
+		</div>
+		</form>
+        <aside class="mask works-mask">
+			<div class="mask-content">
+				<p class="del-p">您确定要删除作品图片吗？</p>
+				<p class="check-p">
+					<span class="del-com wsdel-ok">确定</span>
+					<span class="wsdel-no">取消</span>
+				</p>
+			</div>
+		</aside>
+		</div>
+	</div>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery-1.7.2.min.js" ></script>
+	<script type="text/javascript" src="../../js/common.js" ></script>
+	
+	<script src="../../js/imgUp.js"></script>
+	<script type="text/javascript">
+		mui.init();
+//		function showPreview(source) {  
+//          var file = source.files[0]; //获取文件对象
+//          if(window.FileReader) {  //FileReader是读取本地文件
+//              var fr = new FileReader(); //创建读取本地文件的一个对象
+//             fr.readAsDataURL(file);  //将文件读取为DATAURL
+//              fr.onload = function(e) { //执行读取本地文件的一个方法
+//              	$(source).siblings().attr('src',e.target.result)
+//              };  
+//          }  
+//      }  
+//      $('.img').on('change',function(){
+//      	showPreview(this)
+//      	$('#img1').show()
+//		         
+//      })
+		
+		
+	</script>
+</body>
+</html>

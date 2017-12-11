@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<link rel="stylesheet" href="../../css/mui.min.css">
+<link rel="stylesheet" href="../../css/myiconfont.css" />
+<link rel="stylesheet" href="../../css/app.css" />
+<title>个人中心</title>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">积分明细</h1>
+	</header>
+	<div class="mui-content">
+		<div class="jf_header">
+			<div id="btn1" class="activeBtn">积分余额<br>
+				<span class="orange score">
+				</span>
+				<i class="samll">分</i>
+			</div>
+			<div id="btn2">累计积分<br>
+				<span class="score">
+				</span>
+				<i class="samll">分</i>
+			</div>
+			<div id="btn3">兑换积分<br>
+				<span class="score">
+				</span>
+				<i class="samll">分</i>
+			</div>
+		</div>
+		<ul class="integral_wrap" style="margin-top: 50px;">
+			<div class="loading">
+				<img src="../../images/shop_detail/reload.gif" />
+			</div>
+		</ul>
+		<p class="more" style="display: none;">查看更多</p>
+	</div>
+	<script src="../../js/mui.min.js" ></script>
+	<script src="../../js/jquery-1.7.2.min.js" ></script>
+	<script src="../../js/common.js"></script>
+	<script>
+		var pageNum=1;
+		var pages=0;
+		var Arr=[];
+		var total=0;
+		function Arrf(){
+			var arrId=[];
+			var arrTit=[];
+			$.each(configList("MemberScoreSource"), function(i,j) {
+				arrId.push(j.title);
+				arrTit.push(j.value)
+				Arr.push({"id":j.value,"title":j.title})
+			});
+			return Arr
+		}
+		Arr=Arrf()
+		function getsocrelist(pageNum,s){
+			
+			$.ajax({
+			type:"get",
+			url:apiUrl+"/member/getsocrelist",
+			data:{
+				"userId":storage['getUserId'],
+				"sign":storage['getSign'],
+				"pageSize":10,
+				"source":s,
+				"pageNum":pageNum
+			},
+			dataType:"json",
+			success:function(data){
+				var html='';
+				$('.integral_wrap').addClass("white")
+				$('.loading').hide()
+				//$('.integral_wrap').html('')
+				
+				if(data.return_code=="SUCCESS"){
+					pages=data.pageInfo.pages;
+					$.each(data.pageInfo.list, function(index,item) {
+						html+='<li class="integralItem">'+
+								'<p class="integralP1"><span>'+
+								timeFormat(item.created)+'</span><br />';
+								$.each(Arr, function(s,h) {
+									if(h.id==item.source){
+										html+='<span>'+h.title+'</span>';
+									}
+								});
+								html+='</p>'+
+								'<p class="integralP2">'+
+									'<span>'+item.addScore+'</span>积分'+
+								'</p>'+
+							'</li>'
+					});
+					$('.integral_wrap').html($('.integral_wrap').html()+html)
+					if(pages<=pageNum){
+						$('.more').text("没有更多了")
+					}else{
+						$('.more').text("查看更多")
+						$('.more').show()
+					}
+					storage['x']=s
+				}
+			}
+		});
+	}
+	getsocrelist(pageNum,'')
+	$('.more').click(function(){
+		if(pages>pageNum){
+			$('.more').text("查看更多")
+			$('.more').show()
+			pageNum++;
+			if(storage['x']==''){
+				getsocrelist(pageNum,'')
+			}else if(storage['x']==998){
+				getsocrelist(pageNum,998)
+			}else{
+				
+				getsocrelist(pageNum,997)
+			}
+			
+		}else{
+			$('.more').text("没有更多了")
+			$('.more').unbind()
+		}
+	})
+	btnClick('#btn1','')
+	btnClick('#btn2',998)
+	btnClick('#btn3',997)
+	function btnClick(para1,para2){
+		$(para1).click(function(){
+			pageNum=1;
+			$(this).siblings().removeClass('activeBtn');
+			$(this).addClass('activeBtn');
+			$(this).find('span').addClass('orange')
+			$('.integral_wrap').html('')
+			$(this).siblings().find('span').removeClass('orange')
+			getsocrelist(pageNum,para2)
+			storage['x']=para2
+		})
+	}
+	if(storage['getUserId']){
+		$.ajax({
+			type:"get",
+			url:apiUrl+"/member/getsocre",
+			data:{
+				"userId":storage['getUserId'],
+				"sign":storage['getSign'],
+			},
+			dataType:"json",
+			success:function(d){
+				if(d.return_code=="SUCCESS"){
+					$('#btn1 .score').text(d.data.balance)
+					$('#btn2 .score').text(d.data.addScoreTotal)
+					$('#btn3 .score').text(d.data.usedScoreTotal)
+					
+				}else{
+					mui.toast(d.return_msg)
+				}
+			}
+		})
+	}else{
+		$('.score ').text(0)
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link href="../../css/app.css" rel="stylesheet"/>
+	<link href="../../css/myiconfont.css" rel="stylesheet" />
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    	<h1 class="mui-title">我的收藏</h1>	
+    <a class="mui-pull-right aaa" id="edit">编辑</a>
+</header>
+ <div class="mui-content">
+ 	<div class="sel_items">
+ 		<ul id="collection_list"  class="collecction_list">
+ 			<div class="loading">
+		 		<img src="../../images/shop_detail/reload.gif" />
+		 	</div>
+        </ul>
+ 	</div>
+ 	<!--<div class="blank">
+ 		<img src="../../images/blank.png" width="100%">
+ 		<p>这里什么都没有</p>
+ 	</div>-->
+</div>
+<div class="navFoot" style="display: none;">
+	<div class="l">
+		<div class="mui-input-row mui-checkbox mui-left">
+			<label class="txt">全选</label>
+			<input name="checkbox" value="Item 1" type="checkbox" id="checkAll">
+		</div>
+		<span class="mui-pull-right">已选<i id="num" class="red">&nbsp;0&nbsp;</i>项服务</span>
+	</div>
+	<div class="r"><a id="del_btn">删除</a></div>
+	<div style="clear: both;"></div>
+</div>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/jquery-1.7.2.min.js" ></script>
+<script src="../../js/common.js" ></script>
+<script type="text/javascript">
+	mui.init();
+	var nowTime=new Date();
+	var nowTimeH=nowTime.getHours();
+	var nowTimeM=nowTime.getMinutes();
+	var infavoriteId='';
+	var num=0;
+	$.ajax({
+		type:"get",
+		url:apiUrl+"/member/getfavoritelist",
+		data:{
+			"userId":storage['getUserId'],
+			"sign":storage['getSign'],
+			"type":2,
+			"pageSize":10,
+			"pageNum":1
+		},
+		dataType:"json",
+		success:function(data){
+			$('.collecction_list').css("background","#fff")
+			var html='';
+			var openTimeStartH='';
+			var openTimeStartM='';
+			var openTimeEndH='';
+			var openTimeEndM='';
+			$.each(data.pageInfo.list, function(index,item) {
+				openTimeStartH=item.merchant.openTime.split('-')[0].split(':')[0];
+				openTimeStartM=item.merchant.openTime.split('-')[0].split(':')[1];
+				openTimeEndH=item.merchant.openTime.split('-')[1].split(':')[0];
+				openTimeEndM=item.merchant.openTime.split('-')[1].split(':')[1];
+				html+='<li class="collecction_item" id="w" style="padding-bottom: 15px;">'+
+					'<input type="hidden" value="'+item.id+'"/>'+
+	        		'<a href="../shop/shop_detail.jsp?id='+item.merchant.id+
+	        		'&x='+storage["cityLat"]+'&y='+storage["cityLng"]+'">'+
+	        			'<div class="collecction_box">'+
+	        				'<div class="col_img shop_pic">'+
+	        					'<img src="'+item.merchant.logo+'" />'+
+	        				'</div>'+
+	        				'<div class="col_text">'+
+	        					'<div >'+
+	        						'<strong class="mui-ellipsis">'+item.merchant.name+'</strong></div>'+
+	        						'<span class="blue">'+item.merchant.score+
+	        						'<i class="small">分</i></span><span class="orange">'+item.merchant.salesAmount+
+	        						'<i class="small">人气</i></span>'+
+	        					'<p>';
+	        					if(item.merchant.openStatus!=1){
+									if(item.merchant.openTime!="24"&&item.merchant.openTime!="00:00-00:00"){
+										html+='<span class="time">'+item.merchant.openTime+
+										'<img src="../../images/shop_detail/shopStop'+item.merchant.openStatus+'.png"/></span>';
+									}else{
+										html+='<span class="time">24H'+
+										'<img src="../../images/shop_detail/shopStop'+item.merchant.openStatus+'.png"/></span>';
+									}
+								}else{
+									if(item.merchant.openTime!="24"&&item.merchant.openTime!="00:00-00:00"){
+										openTimeStartH=item.merchant.openTime.split('-')[0].split(':')[0];
+										openTimeStartM=item.merchant.openTime.split('-')[0].split(':')[1];
+										openTimeEndH=item.merchant.openTime.split('-')[1].split(':')[0];
+										openTimeEndM=item.merchant.openTime.split('-')[1].split(':')[1];
+										html+='<span class="time">'+item.merchant.openTime;
+										if(nowTimeH>=openTimeStartH&&nowTimeH<=openTimeEndH){
+									 	if(nowTimeH==openTimeStartH&&nowTimeM<openTimeStartM){
+											html+=
+											'<img src="../../images/shop_detail/shopStop'+item.merchant.openStatus+'.png"/></span>';
+										}else if(nowTimeH==openTimeEndH&&nowTimeM>openTimeEndM){
+											html+=
+											'<img src="../../images/shop_detail/shopStop'+item.merchant.openStatus+'.png"/></span>';
+										}else{
+											html+='<img src="../../images/shop_detail/open.png"/></span>';		
+								 		}
+										}else{
+											html+=
+											'<img src="../../images/shop_detail/shopStop'+item.merchant.openStatus+'.png"/></span>';
+										}
+									}else{
+										html+='<span class="time">24H<img src="../../images/shop_detail/open.png"/></span>'
+									}
+								}
+								html+='</p>';
+	        					html+='<p class="mui-ellipsis">'+item.merchant.address+'</p>'+
+	        				'</div>'+
+	        			'</div>'+
+	    				'<div class="mui-input-row mui-checkbox mui-checkbox1 mui-left" id="sel_btn">'+
+							'<label style="text-indent: -999px;">选择</label>'+
+							'<input name="serialNum" value="" type="checkbox" class="checkBtn">'+
+						'</div>'+
+	        		'</a>'+
+	        	'</li>'
+			});
+			if(data.pageInfo.total==0){
+				html+='<img src="../../images/blank.png" width="100%">';
+				$('#edit').removeAttr('onclick')
+			}
+			$('#collection_list').html(html)
+			cancelItem();
+		}
+	});
+	function cancelItem(){
+		function selectedId(){
+			infavoriteId='';
+			for(var i=0;i<$('.checkBtn').length;i++){
+					if($('.checkBtn').eq(i).is(':checked')){
+						infavoriteId+=$('.checkBtn').eq(i).parents('li').find('input[type=hidden]').val()+',';
+					}
+				}
+			 return infavoriteId
+		}
+		$('.checkBtn').click(function(){
+			var obj=$(this);
+			var p=obj.parents('li');
+			if(obj.is(':checked')){
+				num++;
+				obj.addClass('c');
+				
+			}else{
+				num--;
+				obj.removeClass('c');
+			}
+			$('#num').text(num);
+			if(num>0){
+				
+				$('#del_btn').css('background','red')
+			}else{
+				$('#del_btn').css('background','#888')
+			}
+			selectedId()
+			console.log(selectedId())
+		})
+		$('#checkAll').click(function(){
+			if($(this).is(":checked")){
+				document.getElementById('collection_list').style.paddingLeft="3rem";
+				document.getElementById('edit').innerText="完成";
+				$('.checkBtn').attr('checked',"checked")
+			}else{
+				document.getElementById('collection_list').style.paddingLeft="0";
+				document.getElementById('edit').innerText="编辑";
+				$('.checkBtn').removeAttr('checked')
+			}
+		})
+		$('#del_btn').click(function(){
+			$.ajax({
+					type:"post",
+					url:apiUrl+"/member/cancelfavorite",
+					data:{
+						"userId":storage['getUserId'],
+						"sign":storage['getSign'],
+						"id":selectedId()
+					},
+					dataType:"json",
+					success:function(data){
+						if(data.return_code=="SUCCESS"){
+							mui.toast("取消收藏成功");
+							$('.collBtn i').text('收藏');
+							$('.collBtn span').removeClass('icon-shoucang1');
+							$('.collBtn span').addClass('icon-shoucang');
+							location.reload();
+							
+						}else if(data.return_code=="FAVORITE_EXIT"){
+							$('.collBtn i').text('收藏');
+							$('.collBtn span').addClass('icon-shoucang');
+						}else{
+							alert(data.return_msg)
+						}
+					}
+				});
+		})
+	}
+	document.getElementById('edit').onclick=function(){
+		var str=document.getElementById('edit').innerText;
+		if(str=="编辑"){
+			$('.navFoot').show()
+			document.getElementById('collection_list').style.paddingLeft="3rem";
+			document.getElementById('edit').innerText="完成";
+		}else{
+			
+			document.getElementById('collection_list').style.paddingLeft="0";
+			document.getElementById('edit').innerText="编辑";
+		}
+	}
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../../css/app.css" />
+		<title>车务代理</title>
+	</head>
+	<body class="white">
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">车务代理</h1>
+		</header>
+		<div class="notice" style="margin-top: 50px;">
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery-1.7.2.min.js" ></script>
+		<script src="../../js/common.js"></script>
+		<script>
+			var columnCode='';
+			$.ajax({
+				type:"get",
+				url:apiUrl+"/appcms/getcontents",
+				async:true,
+				data:{
+					"userId":storage['getUserId'],
+					"sign":storage['getSign'],
+					"region":storage['region'],
+					"columnCode":"H01M11",
+					"isGetImage":1
+				},
+				dataType:"json",
+				success:function(data){
+					if(data.return_code=="SUCCESS"){
+						var html='';
+						$.each(data.pageInfo.list, function(index,item) {
+							if(item.showContent){
+								html+=item.showContent;
+							}else{
+								window.location.assign(item.url)
+							}
+							
+						});
+						$('.notice').html(html)
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
